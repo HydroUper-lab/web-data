@@ -1,4 +1,7 @@
 {
-  "tanggal": "2026-07-04",
-  "hujan": 125.4
+  "stasiun": "DAS Citarum",
+  "hujan_hari_ini": 125.4,
+  "lat": -6.9147,
+  "lon": 107.6098,
+  "riwayat": [10, 25, 30, 42, 18, 55, 125]
 }
