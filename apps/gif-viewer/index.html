@@ -1,54 +1,167 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIF Viewer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <style>
-        body {
-            margin: 0;
-            padding: 10px;
-            background: white;
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
+<title>GSMaP Viewer</title>
 
-        img {
-            max-width: 100%;
-            height: auto;
-        }
+<style>
 
-        .error {
-            color: red;
-            margin-top: 20px;
-        }
-    </style>
+body{
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin:auto;
+    padding:20px;
+}
+
+details{
+    border:1px solid #cccccc;
+    border-radius:8px;
+    margin-bottom:20px;
+    background:#f8f8f8;
+}
+
+summary{
+    cursor:pointer;
+    padding:15px;
+    font-size:20px;
+    font-weight:bold;
+    color:#004b8d;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th, td{
+    border:1px solid #d0d0d0;
+    padding:10px;
+    text-align:left;
+}
+
+th{
+    width:220px;
+    background:#f1f1f1;
+}
+
+img{
+    width:100%;
+    height:auto;
+    border:1px solid #d0d0d0;
+    border-radius:8px;
+}
+
+.download-link{
+    font-weight:bold;
+    color:#0066cc;
+}
+
+</style>
 </head>
 
 <body>
 
-<img id="viewer" alt="GIF Viewer">
-<div id="error" class="error"></div>
+<details open>
+
+<summary id="title">
+Memuat informasi...
+</summary>
+
+<table>
+
+<tr>
+<th>Produk</th>
+<td id="produk"></td>
+</tr>
+
+<tr>
+<th>Periode GIF</th>
+<td id="periode"></td>
+</tr>
+
+<tr>
+<th>Waktu Awal</th>
+<td id="awal"></td>
+</tr>
+
+<tr>
+<th>Waktu Akhir</th>
+<td id="akhir"></td>
+</tr>
+
+<tr>
+<th>Deskripsi</th>
+<td id="deskripsi"></td>
+</tr>
+
+<tr>
+<th>Sumber Data</th>
+<td id="sumber"></td>
+</tr>
+
+<tr>
+<th>Download Data</th>
+<td>
+<a id="download" target="_blank"
+class="download-link">
+Unduh NetCDF
+</a>
+</td>
+</tr>
+
+</table>
+
+</details>
+
+<img id="viewer">
 
 <script>
 
 const params = new URLSearchParams(window.location.search);
 
-// default jika parameter tidak ada
 const file = params.get("file") || "now.gif";
 
-// path menuju folder gif
-const gifPath = "../../gif/" + file;
+document.getElementById("viewer").src =
+"../../gif/" + file;
 
-// tampilkan gif
-document.getElementById("viewer").src = gifPath;
+fetch("../../metadata/gif.json")
+.then(response => response.json())
+.then(data => {
 
-// jika file tidak ditemukan
-document.getElementById("viewer").onerror = function() {
-    document.getElementById("error").innerHTML =
-        "File tidak ditemukan: " + file;
-};
+const item = data[file];
+
+if (!item) return;
+
+document.getElementById("title").textContent =
+item.title;
+
+document.getElementById("produk").textContent =
+item.title;
+
+document.getElementById("periode").textContent =
+item.animation_period;
+
+document.getElementById("awal").textContent =
+item.start_time;
+
+document.getElementById("akhir").textContent =
+item.end_time;
+
+document.getElementById("deskripsi").textContent =
+item.description;
+
+document.getElementById("sumber").textContent =
+item.source;
+
+document.getElementById("download").href =
+item.download_url;
+
+document.getElementById("download").textContent =
+item.download_name;
+
+});
 
 </script>
 
