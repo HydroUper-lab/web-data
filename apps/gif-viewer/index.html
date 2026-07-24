@@ -4,112 +4,101 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>GSMaP GIF Viewer</title>
+<title>GSMaP Viewer</title>
 
 <style>
-    html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        background: #ffffff;
-        font-family: Arial, sans-serif;
-        color: #222222;
-    }
 
-    .container {
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-        padding: 10px;
-    }
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    padding:10px;
+    background:white;
+}
 
-    details {
-        width: 100%;
-        box-sizing: border-box;
-        border: 1px solid #cccccc;
-        border-radius: 6px;
-        margin-bottom: 12px;
-        background: #ffffff;
-    }
+.container{
+    width:100%;
+}
 
-    summary {
-        cursor: pointer;
-        padding: 12px 14px;
-        font-size: 18px;
-        font-weight: bold;
-        color: #004b8d;
-        line-height: 1.4;
-    }
+/* GIF */
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-        font-size: 14px;
-    }
+img{
+    width:100%;
+    height:auto;
+    display:block;
+    border:1px solid #cccccc;
+}
 
-    th, td {
-        border-top: 1px solid #dddddd;
-        padding: 8px 10px;
-        text-align: left;
-        vertical-align: top;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-    }
+/* Ringkasan */
 
-    th {
-        width: 28%;
-        background: #f5f5f5;
-        font-weight: bold;
-    }
+.summary-box{
+    margin-top:12px;
+    padding:15px;
+    border:1px solid #d9d9d9;
+    border-radius:8px;
+    background:#fafafa;
+}
 
-    .gif-wrapper {
-        width: 100%;
-        text-align: center;
-    }
+.summary-box h2{
+    margin-top:0;
+    margin-bottom:10px;
+    color:#004b8d;
+}
 
-    img {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        border: 1px solid #dddddd;
-        box-sizing: border-box;
-    }
+.summary-item{
+    margin:6px 0;
+}
 
-    .download-link {
-        font-weight: bold;
-        color: #0066cc;
-        text-decoration: none;
-    }
+/* Tombol download */
 
-    .download-link:hover {
-        text-decoration: underline;
-    }
+.download-btn{
+    display:inline-block;
+    margin-top:12px;
+    padding:10px 15px;
+    background:#0056b3;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+    font-weight:bold;
+}
 
-    .error {
-        color: red;
-        font-weight: bold;
-        padding: 10px;
-    }
+.download-btn:hover{
+    background:#004090;
+}
 
-    @media (max-width: 600px) {
-        summary {
-            font-size: 16px;
-        }
+/* Accordion */
 
-        table {
-            font-size: 13px;
-        }
+details{
+    margin-top:15px;
+    border:1px solid #d9d9d9;
+    border-radius:8px;
+}
 
-        th {
-            width: 35%;
-        }
+summary{
+    padding:12px;
+    font-weight:bold;
+    cursor:pointer;
+    color:#004b8d;
+}
 
-        th, td {
-            padding: 7px;
-        }
-    }
+/* Tabel */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th, td{
+    border-top:1px solid #e0e0e0;
+    padding:10px;
+    text-align:left;
+    vertical-align:top;
+}
+
+th{
+    width:220px;
+    background:#f5f5f5;
+}
+
 </style>
 </head>
 
@@ -117,10 +106,49 @@
 
 <div class="container">
 
-    <details open>
-        <summary id="title">Memuat informasi produk...</summary>
+    <!-- GIF -->
+
+    <img id="viewer">
+
+    <!-- Ringkasan -->
+
+    <div class="summary-box">
+
+        <h2 id="title">Memuat...</h2>
+
+        <div class="summary-item">
+            <strong>Periode Animasi:</strong>
+            <span id="periode"></span>
+        </div>
+
+        <div class="summary-item">
+            <strong>Waktu Data:</strong>
+            <span id="awal"></span>
+            s.d.
+            <span id="akhir"></span>
+        </div>
+
+        <div class="summary-item">
+            <strong>Deskripsi:</strong>
+            <span id="deskripsi-singkat"></span>
+        </div>
+
+        <a id="download"
+           class="download-btn"
+           target="_blank">
+           Unduh Data NetCDF
+        </a>
+
+    </div>
+
+    <!-- Detail -->
+
+    <details>
+
+        <summary>Informasi Produk</summary>
 
         <table>
+
             <tr>
                 <th>Produk</th>
                 <td id="produk"></td>
@@ -132,23 +160,23 @@
             </tr>
 
             <tr>
-                <th>Deskripsi</th>
+                <th>Deskripsi Lengkap</th>
                 <td id="deskripsi"></td>
             </tr>
 
             <tr>
                 <th>Periode GIF</th>
-                <td id="periode"></td>
+                <td id="periode2"></td>
             </tr>
 
             <tr>
                 <th>Waktu Awal</th>
-                <td id="awal"></td>
+                <td id="awal2"></td>
             </tr>
 
             <tr>
                 <th>Waktu Akhir</th>
-                <td id="akhir"></td>
+                <td id="akhir2"></td>
             </tr>
 
             <tr>
@@ -166,93 +194,80 @@
                 <td id="sumber"></td>
             </tr>
 
-            <tr>
-                <th>Download Data Jam-jaman</th>
-                <td>
-                    <a id="download" class="download-link" target="_blank" rel="noopener">
-                        Memuat link download...
-                    </a>
-                </td>
-            </tr>
         </table>
+
     </details>
-
-    <div id="error" class="error"></div>
-
-    <div class="gif-wrapper">
-        <img id="viewer" alt="Animasi GSMaP">
-    </div>
 
 </div>
 
 <script>
+
 const params = new URLSearchParams(window.location.search);
-const file = params.get("file") || "now.gif";
 
-const gifPath = "../../gif/" + file;
-const metadataPath = "../../metadata/gif.json";
+const file =
+params.get("file") || "now.gif";
 
-document.getElementById("viewer").src = gifPath;
+document.getElementById("viewer").src =
+"../../gif/" + file;
 
-document.getElementById("viewer").onerror = function() {
-    document.getElementById("error").textContent =
-        "File GIF tidak ditemukan: " + file;
-};
+fetch("../../metadata/gif.json")
+.then(response => response.json())
+.then(data => {
 
-fetch(metadataPath)
-    .then(response => response.json())
-    .then(data => {
-        const item = data[file];
+    const item = data[file];
 
-        if (!item) {
-            document.getElementById("error").textContent =
-                "Metadata tidak ditemukan untuk file: " + file;
-            document.getElementById("title").textContent =
-                "Informasi produk tidak tersedia";
-            return;
-        }
+    if(!item) return;
 
-        document.getElementById("title").textContent =
-            item.title || "Informasi Produk";
+    document.getElementById("title").textContent =
+        item.title;
 
-        document.getElementById("produk").textContent =
-            item.title || "-";
+    document.getElementById("periode").textContent =
+        item.animation_period;
 
-        document.getElementById("versi").textContent =
-            item.version || "-";
+    document.getElementById("awal").textContent =
+        item.start_time;
 
-        document.getElementById("deskripsi").textContent =
-            item.description || "-";
+    document.getElementById("akhir").textContent =
+        item.end_time;
 
-        document.getElementById("periode").textContent =
-            item.animation_period || "175 jam terakhir dari data yang tersedia";
+    document.getElementById("deskripsi-singkat").textContent =
+        item.description;
 
-        document.getElementById("awal").textContent =
-            item.start_time || "-";
+    document.getElementById("download").href =
+        item.download_url;
 
-        document.getElementById("akhir").textContent =
-            item.end_time || "-";
+    document.getElementById("download").textContent =
+        item.download_name;
 
-        document.getElementById("resolusi").textContent =
-            item.resolution || "-";
+    document.getElementById("produk").textContent =
+        item.title;
 
-        document.getElementById("update").textContent =
-            item.update_frequency || "-";
+    document.getElementById("versi").textContent =
+        item.version;
 
-        document.getElementById("sumber").textContent =
-            item.source || "-";
+    document.getElementById("deskripsi").textContent =
+        item.description;
 
-        const downloadLink = document.getElementById("download");
-        downloadLink.href = item.download_url || "#";
-        downloadLink.textContent =
-            item.download_name || "Unduh data NetCDF";
-    })
-    .catch(error => {
-        document.getElementById("error").textContent =
-            "Gagal memuat metadata gif.json.";
-        document.getElementById("title").textContent =
-            "Informasi produk tidak tersedia";
-    });
+    document.getElementById("periode2").textContent =
+        item.animation_period;
+
+    document.getElementById("awal2").textContent =
+        item.start_time;
+
+    document.getElementById("akhir2").textContent =
+        item.end_time;
+
+    document.getElementById("resolusi").textContent =
+        item.resolution;
+
+    document.getElementById("update").textContent =
+        item.update_frequency;
+
+    document.getElementById("sumber").textContent =
+        item.source;
+
+});
+
 </script>
 
 </body>
