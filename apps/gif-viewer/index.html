@@ -8,20 +8,15 @@
     <style>
         body {
             margin: 0;
-            padding: 20px;
-            background: #ffffff;
-            font-family: Arial, sans-serif;
+            padding: 10px;
+            background: white;
             text-align: center;
-        }
-
-        h2 {
-            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
         }
 
         img {
             max-width: 100%;
             height: auto;
-            border: 1px solid #ddd;
         }
 
         .error {
@@ -33,30 +28,27 @@
 
 <body>
 
-<h2>HydroUper Lab Viewer</h2>
-
-<img id="viewer" alt="GIF tidak ditemukan">
-
+<img id="viewer" alt="GIF Viewer">
 <div id="error" class="error"></div>
 
 <script>
 
 const params = new URLSearchParams(window.location.search);
-const file = params.get("file");
 
-if (!file) {
+// default jika parameter tidak ada
+const file = params.get("file") || "now.gif";
+
+// path menuju folder gif
+const gifPath = "../../gif/" + file;
+
+// tampilkan gif
+document.getElementById("viewer").src = gifPath;
+
+// jika file tidak ditemukan
+document.getElementById("viewer").onerror = function() {
     document.getElementById("error").innerHTML =
-        "Parameter file belum diberikan.";
-} else {
-
-    const gifPath =
-        "../../gif/" + file;
-
-    document
-        .getElementById("viewer")
-        .src = gifPath;
-
-}
+        "File tidak ditemukan: " + file;
+};
 
 </script>
 
