@@ -1,0 +1,76 @@
+{
+  "now.gif": {
+    "title": "GSMaP NOW",
+    "short_name": "NOW",
+    "description": "Produk estimasi curah hujan near real-time GSMaP NOW yang dikembangkan oleh JAXA. Produk ini digunakan untuk pemantauan hujan terkini dengan latensi yang sangat rendah.",
+    "start_time": "2025-07-17 00:00 UTC",
+    "end_time": "2025-07-24 06:00 UTC",
+    "animation_period": "175 jam terakhir",
+    "download_name": "Unduh Data GSMaP NOW (NetCDF)",
+    "download_url": "https://drive.google.com/drive/folders/1glqHMdAw6kqQ2_2U2iynlJgt9aVHDPJw?usp=sharing",
+    "source": "JAXA GSMaP",
+    "version": "NOW",
+    "resolution": "0.1 derajat",
+    "update_frequency": "Hourly"
+  },
+
+  "ver6_o.gif": {
+    "title": "GSMaP Near Real Time Versi 6 Original",
+    "short_name": "NRT V6 Original",
+    "description": "Produk GSMaP Near Real Time versi 6 Original tanpa koreksi gauge.",
+    "start_time": "2025-07-17 00:00 UTC",
+    "end_time": "2025-07-24 06:00 UTC",
+    "animation_period": "175 jam terakhir",
+    "download_name": "Unduh Data NRT V6 Original (NetCDF)",
+    "download_url": "https://domain-anda/data/nrt_v6_original.nc",
+    "source": "JAXA GSMaP",
+    "version": "V6",
+    "resolution": "0.1 derajat",
+    "update_frequency": "Hourly"
+  },
+
+  "ver7_o.gif": {
+    "title": "GSMaP Near Real Time Versi 7 Original",
+    "short_name": "NRT V7 Original",
+    "description": "Produk GSMaP Near Real Time versi 7 Original tanpa koreksi gauge.",
+    "start_time": "2025-07-17 00:00 UTC",
+    "end_time": "2025-07-24 06:00 UTC",
+    "animation_period": "175 jam terakhir",
+    "download_name": "Unduh Data NRT V7 Original (NetCDF)",
+    "download_url": "https://domain-anda/data/nrt_v7_original.nc",
+    "source": "JAXA GSMaP",
+    "version": "V7",
+    "resolution": "0.1 derajat",
+    "update_frequency": "Hourly"
+  },
+
+  "ver8_o.gif": {
+    "title": "GSMaP Near Real Time Versi 8 Original",
+    "short_name": "NRT V8 Original",
+    "description": "Produk GSMaP Near Real Time versi 8 Original tanpa koreksi gauge.",
+    "start_time": "2025-07-17 00:00 UTC",
+    "end_time": "2025-07-24 06:00 UTC",
+    "animation_period": "175 jam terakhir",
+    "download_name": "Unduh Data NRT V8 Original (NetCDF)",
+    "download_url": "https://domain-anda/data/nrt_v8_original.nc",
+    "source": "JAXA GSMaP",
+    "version": "V8",
+    "resolution": "0.1 derajat",
+    "update_frequency": "Hourly"
+  },
+
+  "ver6_g.gif": {
+    "title": "GSMaP Near Real Time Versi 6 Gauge-Calibrated",
+    "short_name": "NRT V6 Gauge",
+    "description": "Produk GSMaP Near Real Time versi 6 dengan koreksi berbasis data gauge.",
+    "start_time": "2025-07-17 00:00 UTC",
+    "end_time": "2025-07-24 06:00 UTC",
+    "animation_period": "175 jam terakhir",
+    "download_name": "Unduh Data NRT V6 Gauge-Calibrated (NetCDF)",
+    "download_url": "https://domain-anda/data/nrt_v6_gauge.nc",
+    "source": "JAXA GSMaP",
+    "version": "V6",
+    "resolution": "0.1 derajat",
+    "update_frequency": "Hourly"
+  }
+}
