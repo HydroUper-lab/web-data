@@ -1,55 +1,32 @@
 {
   "now.gif": {
     "title": "GSMaP NOW",
-    "summary": "Produk GSMaP NOW untuk pemantauan curah hujan near real-time Indonesia.",
-
-    "description": "Produk estimasi curah hujan near real-time GSMaP NOW yang dikembangkan oleh JAXA. Produk ini digunakan untuk pemantauan hujan terkini dengan latensi sangat rendah.",
-
+    "summary": "Produk GSMaP NOW untuk pemantauan curah hujan real-time Indonesia.",
+    "description": "Produk estimasi curah hujan real-time GSMaP NOW yang dikembangkan oleh JAXA. Produk ini digunakan untuk pemantauan hujan terkini dengan latensi 0 jam.",
     "start_time": "2026-07-15 00:00 UTC",
     "end_time": "2026-07-22 06:00 UTC",
-
     "animation_period": "175 jam terakhir",
-
     "download_name": "Unduh Data GSMaP NOW (NetCDF)",
-
     "download_url": "https://drive.google.com/drive/folders/1glqHMdAw6kqQ2_2U2iynlJgt9aVHDPJw?usp=sharing",
-
     "source": "JAXA GSMaP",
-
     "version": "NOW",
-
     "resolution": "0.1 derajat",
-
     "update_frequency": "Hourly",
-
     "notes": "Animasi menampilkan 175 jam terakhir dari data GSMaP yang tersedia pada saat pemrosesan."
   },
-
-  "ver8_o.gif": {
-    "title": "GSMaP Near Real Time Versi 8 Original",
-
-    "summary": "Produk GSMaP Near Real Time versi 8 Original untuk estimasi curah hujan jam-jaman Indonesia.",
-
-    "description": "Produk GSMaP Near Real Time versi 8 Original tanpa koreksi gauge. Produk ini menyediakan estimasi curah hujan berbasis satelit untuk keperluan monitoring dan analisis hidrometeorologi.",
-
+  "std_ver8_gauged.gif": {
+    "title": "GSMaP Standard Versi 8 Original",
+    "summary": "Produk GSMaP Standard Versi 8 Original untuk estimasi curah hujan jam-jaman Indonesia.",
+    "description": "Produk GSMaP Standard Versi 8 Original tanpa koreksi gauge. Produk ini menyediakan estimasi curah hujan berbasis satelit untuk keperluan monitoring dan analisis hidrometeorologi. Biasanya data tersedia sekitar 2-3 hari setelah waktu pengamatan. Data ini dapat digunakan untuk analisis tren curah hujan, peringatan banjir, dan penelitian hidrologi.",
     "start_time": "2026-07-15 00:00 UTC",
-
     "end_time": "2026-07-22 06:00 UTC",
-
     "animation_period": "175 jam terakhir",
-
-    "download_name": "Unduh Data GSMaP NRT V8 Original (NetCDF)",
-
+    "download_name": "Unduh Data GSMaP Standard Versi 8 Original (NetCDF)",
     "download_url": "https://drive.google.com/drive/folders/yyyyyyyyyyyyyyyyyyyy",
-
     "source": "JAXA GSMaP",
-
-    "version": "NRT V8 Original",
-
+    "version": "Standard Versi 8 Original",
     "resolution": "0.1 derajat",
-
     "update_frequency": "Hourly",
-
-    "notes": "Animasi menampilkan 175 jam terakhir dari data GSMaP Near Real Time Versi 8 Original yang tersedia pada saat pemrosesan."
+    "notes": "Animasi menampilkan 175 jam terakhir dari data GSMaP Standard Versi 8 Original yang tersedia pada saat pemrosesan."
   }
 }
