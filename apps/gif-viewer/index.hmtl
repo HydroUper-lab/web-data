@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIF Viewer</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+        }
+
+        .error {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>HydroUper Lab Viewer</h2>
+
+<img id="viewer" alt="GIF tidak ditemukan">
+
+<div id="error" class="error"></div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const file = params.get("file");
+
+if (!file) {
+    document.getElementById("error").innerHTML =
+        "Parameter file belum diberikan.";
+} else {
+
+    const gifPath =
+        "../../gif/" + file;
+
+    document
+        .getElementById("viewer")
+        .src = gifPath;
+
+}
+
+</script>
+
+</body>
+</html>
