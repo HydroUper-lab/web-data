@@ -87,7 +87,8 @@ table{
     border-collapse:collapse;
 }
 
-th, td{
+th,
+td{
     border-top:1px solid #e0e0e0;
     padding:10px;
     text-align:left;
@@ -99,6 +100,11 @@ th{
     background:#f5f5f5;
 }
 
+.error{
+    color:red;
+    font-weight:bold;
+}
+
 </style>
 </head>
 
@@ -108,7 +114,7 @@ th{
 
     <!-- GIF -->
 
-    <img id="viewer">
+    <img id="viewer" alt="GSMaP Animation">
 
     <!-- Ringkasan -->
 
@@ -118,32 +124,34 @@ th{
 
         <div class="summary-item">
             <strong>Periode Animasi:</strong>
-            <span id="periode"></span>
+            <span id="periode">-</span>
         </div>
 
         <div class="summary-item">
             <strong>Waktu Data:</strong>
-            <span id="awal"></span>
+            <span id="awal">-</span>
             s.d.
-            <span id="akhir"></span>
+            <span id="akhir">-</span>
         </div>
 
         <div class="summary-item">
             <strong>Deskripsi:</strong>
-            <span id="deskripsi-singkat"></span>
+            <span id="deskripsi-singkat">-</span>
         </div>
 
-        <a id="download"
-           class="download-btn"
-           target="_blank">
-           Unduh Data NetCDF
+        <a
+            id="download"
+            class="download-btn"
+            target="_blank"
+            rel="noopener noreferrer">
+            Unduh Data NetCDF
         </a>
 
     </div>
 
     <!-- Detail -->
 
-    <details>
+    <details open>
 
         <summary>Informasi Produk</summary>
 
@@ -151,47 +159,47 @@ th{
 
             <tr>
                 <th>Produk</th>
-                <td id="produk"></td>
+                <td id="produk">-</td>
             </tr>
 
             <tr>
                 <th>Versi</th>
-                <td id="versi"></td>
+                <td id="versi">-</td>
             </tr>
 
             <tr>
                 <th>Deskripsi Lengkap</th>
-                <td id="deskripsi"></td>
+                <td id="deskripsi">-</td>
             </tr>
 
             <tr>
                 <th>Periode GIF</th>
-                <td id="periode2"></td>
+                <td id="periode2">-</td>
             </tr>
 
             <tr>
                 <th>Waktu Awal</th>
-                <td id="awal2"></td>
+                <td id="awal2">-</td>
             </tr>
 
             <tr>
                 <th>Waktu Akhir</th>
-                <td id="akhir2"></td>
+                <td id="akhir2">-</td>
             </tr>
 
             <tr>
                 <th>Resolusi</th>
-                <td id="resolusi"></td>
+                <td id="resolusi">-</td>
             </tr>
 
             <tr>
                 <th>Frekuensi Update</th>
-                <td id="update"></td>
+                <td id="update">-</td>
             </tr>
 
             <tr>
                 <th>Sumber Data</th>
-                <td id="sumber"></td>
+                <td id="sumber">-</td>
             </tr>
 
         </table>
@@ -202,69 +210,129 @@ th{
 
 <script>
 
+/* nama file gif dari URL */
 const params = new URLSearchParams(window.location.search);
+const file = params.get("file") || "now.gif";
 
-const file =
-params.get("file") || "now.gif";
+/* tampilkan GIF */
 
-document.getElementById("viewer").src =
-"../../gif/" + file;
+const viewer = document.getElementById("viewer");
+
+viewer.src = "../../gif/" + file;
+
+viewer.onerror = function(){
+
+    document.getElementById("title").textContent =
+        "GIF tidak ditemukan";
+
+    console.error(
+        "GIF tidak ditemukan:",
+        "../../gif/" + file
+    );
+
+};
+
+/* baca metadata */
 
 fetch("../../metadata/gif.json")
-.then(response => response.json())
+
+.then(response => {
+
+    if(!response.ok){
+        throw new Error(
+            "HTTP Error " + response.status
+        );
+    }
+
+    return response.json();
+
+})
+
 .then(data => {
+
+    console.log("Metadata:", data);
 
     const item = data[file];
 
-    if(!item) return;
+    if(!item){
+
+        document.getElementById("title").textContent =
+            "Metadata tidak ditemukan";
+
+        console.error(
+            "Tidak ada metadata untuk:",
+            file
+        );
+
+        return;
+    }
 
     document.getElementById("title").textContent =
-        item.title;
+        item.title || "-";
 
     document.getElementById("periode").textContent =
-        item.animation_period;
+        item.animation_period || "-";
 
     document.getElementById("awal").textContent =
-        item.start_time;
+        item.start_time || "-";
 
     document.getElementById("akhir").textContent =
-        item.end_time;
+        item.end_time || "-";
 
     document.getElementById("deskripsi-singkat").textContent =
-        item.description;
+        item.summary || item.description || "-";
 
-    document.getElementById("download").href =
-        item.download_url;
+    const downloadBtn =
+        document.getElementById("download");
 
-    document.getElementById("download").textContent =
-        item.download_name;
+    downloadBtn.href =
+        item.download_url || "#";
+
+    downloadBtn.textContent =
+        item.download_name ||
+        "Unduh Data NetCDF";
 
     document.getElementById("produk").textContent =
-        item.title;
+        item.title || "-";
 
     document.getElementById("versi").textContent =
-        item.version;
+        item.version || "-";
 
     document.getElementById("deskripsi").textContent =
-        item.description;
+        item.description || "-";
 
     document.getElementById("periode2").textContent =
-        item.animation_period;
+        item.animation_period || "-";
 
     document.getElementById("awal2").textContent =
-        item.start_time;
+        item.start_time || "-";
 
     document.getElementById("akhir2").textContent =
-        item.end_time;
+        item.end_time || "-";
 
     document.getElementById("resolusi").textContent =
-        item.resolution;
+        item.resolution || "-";
 
     document.getElementById("update").textContent =
-        item.update_frequency;
+        item.update_frequency || "-";
 
     document.getElementById("sumber").textContent =
-        item.source;
+        item.source || "-";
+
+})
+
+.catch(error => {
+
+    console.error(
+        "Gagal membaca gif.json",
+        error
+    );
+
+    document.getElementById("title").innerHTML =
+        '<span class="error">Gagal memuat metadata</span>';
+
+    document.getElementById("deskripsi-singkat").textContent =
+        error.message;
 
 });
 
