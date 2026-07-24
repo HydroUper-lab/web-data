@@ -18,16 +18,16 @@
     "title": "GSMaP Realtime Gauged Versi 6",
     "summary": "Produk GSMaP Realtime Gauged Versi 6.",
     "description": "Estimasi curah hujan real-time dengan koreksi gauge menggunakan algoritma GSMaP Versi 6.",
-    "start_time": "2026-07-15 00:00 WIB",
-    "end_time": "2026-07-22 06:00 WIB",
-    "animation_period": "175 jam terakhir",
-    "download_name": "Unduh Data GSMaP Realtime Gauged Versi 6 (NetCDF)",
-    "download_url": "",
+     "start_time": "2026-07-15 00:00 WIB",
+     "end_time": "2026-07-22 06:00 WIB",
+     "animation_period": "175 jam terakhir",
+     "download_name": "Unduh Data GSMaP Realtime Gauged Versi 6 (NetCDF)",
+     "download_url": "",
     "source": "JAXA GSMaP",
     "version": "Realtime Gauged Ver.6",
     "resolution": "0.1 derajat",
-    "update_frequency": "Hourly",
-    "notes": "Animasi menampilkan 175 jam terakhir dari data GSMaP yang tersedia saat pemrosesan."
+    "update_frequency": "Hourly",
+    "notes": "Animasi menampilkan 175 jam terakhir dari data GSMaP yang tersedia saat pemrosesan."
   },
   "realtime_gauged_ver7.gif": {
     "title": "GSMaP Realtime Gauged Versi 7",
